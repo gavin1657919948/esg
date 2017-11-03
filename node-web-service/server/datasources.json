@@ -1,0 +1,31 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "postgresql",
+    "host": "localhost",
+    "port": 5432,
+    "database": "default",
+    "password": "123456",
+    "user": "postgres",
+    "createDatabase": true
+  },
+  "verifyEmail": {
+    "name": "verifyEmail",
+    "connector": "mail",
+    "transports": [
+      {
+        "type": "smtp",
+        "host": "smtp.exmail.qq.com",
+        "secure": true,
+        "port": 465,
+        "tls": {
+          "rejectUnauthorized": true
+        },
+        "auth": {
+          "user": "noreply@wushuu.com",
+          "pass": "NoReply123"
+        }
+      }
+    ]
+  }
+}

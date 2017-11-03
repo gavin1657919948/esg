@@ -1,0 +1,37 @@
+{
+  "name": "user",
+  "base": "User",
+  "idInjection": true,
+  "properties": {},
+  "validations": [],
+  "relations": {
+    "projects": {
+      "type": "hasMany",
+      "model": "project",
+      "foreignKey": "ownerId"
+    },
+    "teams": {
+      "type": "hasMany",
+      "model": "team",
+      "foreignKey": "ownerId"
+    },
+    "emissions":{
+      "type": "hasMany",
+      "model": "emission",
+      "foreignKey": "uid"
+    }
+  },
+  "acls": [],
+  "methods": [],
+  "options": {
+    "emailVerificationRequired": true,
+    "restrictResetPasswordTokenScope": true,
+    "verifyOptions": {
+      "type": "email",
+      "from": "noreply@wushuu.com",
+      "protocol": "https",
+      "host": "localhost",
+      "template": "./server/views/verify.ejs"
+    }
+  }
+}
