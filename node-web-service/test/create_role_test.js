@@ -8,16 +8,21 @@ describe("create role test",function(){
         require('./start-server');
         done();
     })
-    // it("create a role",function(){
-    //     app.models.Role.create([
-    //         { name: 'admin', description: 'administrator' },
-    //         { name: 'client', description: 'client' }
-    //     ],function(err,roles){
-    //         if (err) throw err;
-    //         console.log('Created roles:', roles);
-    //     })
-    // })
-    it("login test",function(){
+     it("create a user",function(){
+        var User = app.models.user;
+        User.create([
+            { username: 'John', email: '1657919948@qq.com', password: '123456' }
+           
+          ], function (err, users) {
+            if (err) throw err;
+        
+            console.log('Created users:', users);
+        
+        })
+     
+    })
+})
+    /*it("login test",function(){
         app.models.User.login({
             email:"1657919948@qq.com",
             password:"123456"
@@ -32,4 +37,4 @@ describe("create role test",function(){
         var user=app.models.User;
         console.log("showUser:"+user);
     })
-})
+    */

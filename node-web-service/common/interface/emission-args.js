@@ -11,8 +11,8 @@ module.exports=[
         arg:"fuelType",
         type:"string"
     },
-    {//燃料编号(1为烟煤,2为次烟煤,3为无烟煤,4为褐煤)仅固态
-        arg:"fuelNo",
+    {//燃料名称(如:烟煤)
+        arg:"fuelName",
         type:"string"
     },
     {//设施类型

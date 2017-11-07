@@ -13,25 +13,18 @@ describe("getParams test...",function(){
         require('./start-server');
         done();
     })
-    it("sendData",function(done){
-        json('post', '/api/emissions/calculate')
+    it("inputData",function(done){
+        json('post', '/api/emissions/inputData')
         .send({
-            'uid':'126',
-            'deviceId':'10',
-            'fuelType':'10',
-            'fuelNo':'10',
-            'deviceType':'10',
-            'power':'10',
-            'ash1':'10',
-            'ash2':'10',
-            'ash3':'10',
-            'ash4':'10',
-            'ash5':'10',
-            'ash6':'10',
-            'ash7':'10',
-            'ash8':'10',
-            'ash9':'10',
-            'ash10':'10',
+            'uid':'3',
+            'deviceId':'100010',
+            'fuelType':'固体燃料',
+            'fuelName':'无烟煤',
+            'deviceType':'煤粉锅炉',
+            'power':'80',
+            'ash1':'15',
+            'sul1':'10',
+            'cost1':'100000'
         }) .expect(200, function (err, res) {
             console.log("res.body::",res.body);
             done();
