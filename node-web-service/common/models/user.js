@@ -38,5 +38,5 @@ module.exports = function (User) {
             'before logging in'
         )
     });
-    
+
 };

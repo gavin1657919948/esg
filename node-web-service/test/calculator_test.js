@@ -13,25 +13,32 @@ describe("getParams test...",function(){
         require('./start-server');
         done();
     })
-    it("inputData",function(done){
+    it("inputData...",function(done){
         json('post', '/api/emissions/inputData')
         .send({
             'uid':'3',
-            'deviceId':'100010',
-            'fuelType':'固体燃料',
-            'fuelName':'无烟煤',
-            'deviceType':'煤粉锅炉',
+            'deviceId':'20000',
+            'fuelType':'液体燃料',
+            'fuelName':'一号燃料油',
+            'deviceType':'滑轮',
             'power':'80',
-            'ash1':'15',
-            'sul1':'10',
-            'cost1':'100000'
+            'sul1':'1',
+            'cost1':'100'
         }) .expect(200, function (err, res) {
             console.log("res.body::",res.body);
             done();
         })
 
     }
-
     )
+    // it("queryData...",function(done){
+    //     json('post','/api/emissions/queryData')
+    //     .send({
+    //         'uid':'3'
+    //     }).expect(200,function(err,res){
+    //         console.log("res.body::",res.body);
+    //         done();
+    //     })
+    // })
 
 })

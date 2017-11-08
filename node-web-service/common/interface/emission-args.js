@@ -7,10 +7,7 @@ module.exports=[
         arg:"deviceId",
         type:"string"
     },
-    {//燃料类型(固体,液体,气体)目前仅做完固体
-        arg:"fuelType",
-        type:"string"
-    },
+   
     {//燃料名称(如:烟煤)
         arg:"fuelName",
         type:"string"
@@ -21,153 +18,21 @@ module.exports=[
     },
     {//功率(单位默认MW)
         arg:"power",
+        type:"number"
+    },
+    {//含灰量,后面的数字代表该月
+        arg:"ash",
         type:"string"
     },
-    {//含灰量,后面的数字代表该月(若不输入则前端默认为100)
-        arg:"ash1",
+    {//含硫量,后面的数字代表该月
+        arg:"sul",
         type:"string"
     },
-    {
-        arg:"ash2",
-        type:"string"
-    },
-    {
-        arg:"ash3",
-        type:"string"
-    },
-    {
-        arg:"ash4",
-        type:"string"
-    },
-    {
-        arg:"ash5",
-        type:"string"
-    },
-    {
-        arg:"ash6",
-        type:"string"
-    },
-    {
-        arg:"ash7",
-        type:"string"
-    },
-    {
-        arg:"ash8",
-        type:"string"
-    },
-    {
-        arg:"ash9",
-        type:"string"
-    },
-    {
-        arg:"ash10",
-        type:"string"
-    },
-    {
-        arg:"ash11",
-        type:"string"
-    },
-    {
-        arg:"ash12",
-        type:"string"
-    },
-    {//含硫量,后面的数字代表该月(若不输入则前端默认为100)
-        arg:"sul1",
-        type:"string"
-    },
-    {
-        arg:"sul2",
-        type:"string"
-    },
-    {
-        arg:"sul3",
-        type:"string"
-    },
-    {
-        arg:"sul4",
-        type:"string"
-    },
-    {
-        arg:"sul5",
-        type:"string"
-    },
-    {
-        arg:"sul6",
-        type:"string"
-    },
-    {
-        arg:"sul7",
-        type:"string"
-    },
-    {
-        arg:"sul8",
-        type:"string"
-    },
-    {
-        arg:"sul9",
-        type:"string"
-    },
-    {
-        arg:"sul10",
-        type:"string"
-    },
-    {
-        arg:"sul11",
-        type:"string"
-    },
-    {
-        arg:"sul12",
-        type:"string"
-    },
-    {//燃料消耗量,后面的数字代表该月(若不输入前端默认为0)
-        arg:"cost1",
-        type:"string"
-    },
-    {
-        arg:"cost2",
-        type:"string"
-    },
-    {
-        arg:"cost3",
-        type:"string"
-    },
-    {
-        arg:"cost4",
-        type:"string"
-    },
-    {
-        arg:"cost5",
-        type:"string"
-    },
-    {
-        arg:"cost6",
-        type:"string"
-    },
-    {
-        arg:"cost7",
-        type:"string"
-    },
-    {
-        arg:"cost8",
-        type:"string"
-    },
-    {
-        arg:"cost9",
-        type:"string"
-    },
-    {
-        arg:"cost10",
-        type:"string"
-    },
-    {
-        arg:"cost11",
-        type:"string"
-    },
-    {
-        arg:"cost12",
+   
+    {//燃料消耗量,后面的数字代表该月
+        arg:"cost",
         type:"string"
     }
-
   
 
 ];
