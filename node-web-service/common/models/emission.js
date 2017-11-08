@@ -89,7 +89,7 @@ module.exports=function(Emission){
             }
         }
         emisson_TPM=emisson_FTPM+emisson_CPM;
-       console.log("total:"+"NOx="+emisson_NOx+";SOx="+emission_SOx+";CO="+emisson_CO+";TPM="+emisson_TPM+";emission_PM2_5:"+emisson_PM2_5);  
+       console.log("total:"+"NOx="+emisson_NOx+";SOx="+emission_SOx+";CO="+emisson_CO+";TPM="+emisson_TPM+";emission_FTPM:"+emisson_FTPM+";emission_CPM:"+emisson_CPM+";arr_cost[0]"+arr_cost[0]);  
 
          Emission.find({"where":{"uid":uid,"deviceid":deviceId}}, function(err, emission) {
                 if (err){

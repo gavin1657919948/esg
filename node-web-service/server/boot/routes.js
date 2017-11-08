@@ -5,26 +5,7 @@
 
 module.exports = function(app) {
   var router = app.loopback.Router();
-  //self-defined
-  // router.post('/login',function(req,res){
-  //   var email = req.body.email;
-  //   var password = req.body.password;
-  //   app.models.User.login({
-  //     email: email,
-  //     password: password
-  //   }, 'user', function(err, token) {
-  //     if (err)
-  //       return res.render('index', {
-  //         email: email,
-  //         password: password,
-  //         loginFailed: true
-  //       });
-
-  //   })
-  // });
-
-  
-
+ 
   router.get('/', function(req, res) {
     res.render('index', {
       loginFailed: false
