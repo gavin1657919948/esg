@@ -152,7 +152,7 @@ module.exports=function(Facility){
                 type:"string"
             },
             returns:{
-                arg:'emissions',
+                arg:'facilities',
                 type:'json'
             },
             description:["query the facilities emission totalData"]
