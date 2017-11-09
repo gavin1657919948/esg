@@ -1,9 +1,9 @@
-var args=require('../interface/emission-args');
-var efData=require('../init/ef-data.json');
-module.exports=function(Emission){
+var args=require('../interface/facility.interface');
+var efData=require('../config/ef-data.json');
+module.exports=function(Facility){
     //inputData接口:
-    Emission.inputData=function(){
-    console.log("Enter Emission.inputData Function...");  
+    Facility.inputData=function(){
+    console.log("Enter Facility.inputData Function...");  
        for(var i=0;i<args.length;i++){
             var name=args[i].arg;
             var val=arguments[i];
@@ -52,73 +52,73 @@ module.exports=function(Emission){
                 arr_cost[k]=arr_cost[k]*(1000/945.6);
             }
         }
-        var emisson_NOx=0;
-        var emisson_CO=0;
+        var emission_NOx=0;
+        var emission_CO=0;
         var emission_SOx=0;
-        var emisson_PM2_5=0;
-        var emisson_PM10=0;
-        var emisson_FTPM=0;
-        var emisson_CPM=0;
-        var emisson_TPM=0;
+        var emission_PM2_5=0;
+        var emission_PM10=0;
+        var emission_FTPM=0;
+        var emission_CPM=0;
+        var emission_TPM=0;
         for(var m=0;m<12;m++){
-            emisson_NOx=emisson_NOx+arr_cost[m]*ef_nox;
-            emisson_CO+=arr_cost[m]*ef_co;
+            emission_NOx=emission_NOx+arr_cost[m]*ef_nox;
+            emission_CO+=arr_cost[m]*ef_co;
             if(fuelName!="天然气"){
                 emission_SOx+=arr_cost[m]*ef_sox*arr_sul[m];
             }else{
                 emission_SOx+=arr_cost[m]*ef_sox;
             }
             if(fuelName!="烟煤"&&fuelName!="次烟煤"&&fuelName!="无烟煤"&&fuelName!="褐煤"&&deviceType!="固态排渣对冲式煤粉锅炉-两至三个独立燃烧器"&&deviceType!="固态排渣切向燃烧式煤粉锅炉"&&deviceType!="固态排渣墙式煤粉锅炉"&&deviceType!="液态排渣墙式煤粉锅炉"&&deviceType!="旋风式锅炉"&&deviceType!="煤粉锅炉"){
-                emisson_PM2_5+=arr_cost[m]*ef_pm2_5;
-                emisson_PM10+=arr_cost[m]*ef_pm10;
+                emission_PM2_5+=arr_cost[m]*ef_pm2_5;
+                emission_PM10+=arr_cost[m]*ef_pm10;
             }else{
-                emisson_PM2_5+=arr_cost[m]*ef_pm2_5*arr_ash[m];
-                emisson_PM10+=arr_cost[m]*ef_pm10*arr_ash[m];
+                emission_PM2_5+=arr_cost[m]*ef_pm2_5*arr_ash[m];
+                emission_PM10+=arr_cost[m]*ef_pm10*arr_ash[m];
             }
             if(fuelName!="无烟煤"&&fuelName!="褐煤"&&fuelName!="七号燃料油"&&fuelName!="六号燃料油"&&deviceType!="固态排渣对冲式煤粉锅炉-两至三个独立燃烧器"&&deviceType!="固态排渣切向燃烧式煤粉锅炉"&&deviceType!="固态排渣墙式煤粉锅炉"&&deviceType!="液态排渣墙式煤粉锅炉"&&deviceType!="旋风式锅炉"&&deviceType!="煤粉锅炉"){
-                emisson_FTPM+=arr_cost[m]*ef_filterabletpm;
+                emission_FTPM+=arr_cost[m]*ef_filterabletpm;
             }else if((fuelName=="六号燃料油"||fuelName=="七号燃料油")&&ef_filterabletpm!=0){
-                emisson_FTPM+=arr_cost[m]*(ef_filterabletpm*arr_sul[m]+3.22);
+                emission_FTPM+=arr_cost[m]*(ef_filterabletpm*arr_sul[m]+3.22);
             }else{
-                emisson_FTPM+=arr_cost[m]*ef_filterabletpm*arr_ash[m];
+                emission_FTPM+=arr_cost[m]*ef_filterabletpm*arr_ash[m];
             }
             if(fuelName=="无烟煤"){
-                emisson_CPM+=arr_cost[m]*ef_condensiblepm*arr_ash[m];
+                emission_CPM+=arr_cost[m]*ef_condensiblepm*arr_ash[m];
             }else{
-                emisson_CPM+=arr_cost[m]*ef_condensiblepm;
+                emission_CPM+=arr_cost[m]*ef_condensiblepm;
             }
         }
-        emisson_TPM=emisson_FTPM+emisson_CPM;
-       console.log("total:"+"NOx="+emisson_NOx+";SOx="+emission_SOx+";CO="+emisson_CO+";TPM="+emisson_TPM+";emission_FTPM:"+emisson_FTPM+";emission_CPM:"+emisson_CPM+";arr_cost[0]"+arr_cost[0]);  
+        emission_TPM=emission_FTPM+emission_CPM;
+       console.log("total:"+"NOx="+emission_NOx+";SOx="+emission_SOx+";CO="+emission_CO+";TPM="+emission_TPM+";emission_FTPM:"+emission_FTPM+";emission_CPM:"+emission_CPM+";arr_cost[0]"+arr_cost[0]);  
 
-         Emission.find({"where":{"uid":uid,"deviceid":deviceId}}, function(err, emission) {
+       Facility.find({"where":{"uid":uid,"deviceid":deviceId}}, function(err, emission) {
                 if (err){
                     console.log("find Error:",err);
                     throw err;
                 }
                 if(emission.length>0){
                     console.log("更新数据");
-                    Emission.update(
-                        { "deviceid": deviceId,"uid":uid},{ "nox": emisson_NOx,"sox":emission_SOx,"co":emisson_CO,"tpm":emisson_TPM,"pm2_5":emisson_PM2_5,"pm10":emisson_PM10,"ftpm":emisson_FTPM,"cpm":emisson_CPM}
+                    Facility.update(
+                        { "deviceid": deviceId,"uid":uid},{ "nox": emission_NOx,"sox":emission_SOx,"co":emission_CO,"tpm":emission_TPM,"pm2_5":emission_PM2_5,"pm10":emission_PM10,"ftpm":emission_FTPM,"cpm":emission_CPM}
                       , function (err, result) {
                         if (err) {
-                            console.log("updateEmission Error",err);
+                            console.log("updateFacility Error",err);
                             throw err;
                         }
-                        console.log('updateEmission Success:', result);
+                        console.log('updateFacility Success:', result);
                     })
                     
                  }
                 else{
                     console.log("新建数据");
-                    Emission.create(
-                        [{ "deviceid": deviceId, "nox": emisson_NOx,"sox":emission_SOx,"co":emisson_CO,"tpm":emisson_TPM,"pm2_5":emisson_PM2_5,"pm10":emisson_PM10,"ftpm":emisson_FTPM,"cpm":emisson_CPM,"uid":uid}]
+                    Facility.create(
+                        [{ "deviceid": deviceId, "nox": emission_NOx,"sox":emission_SOx,"co":emission_CO,"tpm":emission_TPM,"pm2_5":emission_PM2_5,"pm10":emission_PM10,"ftpm":emission_FTPM,"cpm":emission_CPM,"uid":uid}]
                       , function (err, emission) {
                         if (err) {
-                            console.log("createEmission Error",err);
+                            console.log("createFacility Error",err);
                             throw err;
                         }
-                        console.log('createEmission success:', emission);
+                        console.log('createFacility success:', emission);
                     })
                 }
             
@@ -126,26 +126,26 @@ module.exports=function(Emission){
         
         this.call(arguments[arguments.length-1](null,"saveSuccess"));
     }
-    Emission.remoteMethod(
+    Facility.remoteMethod(
         'inputData',{
             accepts: args,
             returns:{
                 arg:'result',
                 type:'string'
             },
-            description:["calculate and save the emisson data"]
+            description:["calculate and save the facilities emission data"]
         }
     )
 
     //queryData接口:
-    Emission.queryData=function(uid,cb){
-        console.log("Enter Emission queryData Function...");
-        Emission.find({"where":{"uid":uid},"fields":{id:false,uid:false,pm2_5:false,pm10:false,ftpm:false,cpm:false}}, function(err, emission) {
+    Facility.queryData=function(uid,cb){
+        console.log("Enter Facility queryData Function...");
+        Facility.find({"where":{"uid":uid},"fields":{id:false,uid:false,pm2_5:false,pm10:false,ftpm:false,cpm:false}}, function(err, emission) {
             if(err) throw err;
             cb(null,emission);
         })
     }
-    Emission.remoteMethod(
+    Facility.remoteMethod(
         'queryData',{
             accepts:{
                 arg:"uid",
@@ -155,14 +155,14 @@ module.exports=function(Emission){
                 arg:'emissions',
                 type:'json'
             },
-            description:["query the emisson totalData"]
+            description:["query the facilities emission totalData"]
         }
     )
 
     //clearData接口:(重置该用户的计算器)
-    Emission.clearData=function(uid,cb){
-        console.log("Enter Emission clearData Function...");
-        Emission.deleteAll({"where":{"uid":uid}},function(err,result){
+    Facility.clearData=function(uid,cb){
+        console.log("Enter Facility clearData Function...");
+        Facility.deleteAll({"where":{"uid":uid}},function(err,result){
             if(err){
                 console.log(err);
                 throw err;
@@ -172,7 +172,7 @@ module.exports=function(Emission){
         })
     }
 
-    Emission.remoteMethod(
+    Facility.remoteMethod(
         'clearData',{
             accepts:{
                 arg:"uid",
@@ -182,7 +182,7 @@ module.exports=function(Emission){
                 arg:'result',
                 type:'string'
             },
-            description:["clear the emisson Data belongs to User"]
+            description:["clear the facilities emission Data belongs to User"]
         }
     )
      //查询状态编号  

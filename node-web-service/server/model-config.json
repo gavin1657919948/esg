@@ -46,7 +46,7 @@
   "Email": {
     "dataSource": "verifyEmail"
   },
-  "emission":{
+  "facility":{
     "dataSource":"db",
     "public":true
   }

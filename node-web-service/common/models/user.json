@@ -15,9 +15,9 @@
       "model": "team",
       "foreignKey": "ownerId"
     },
-    "emissions":{
+    "facilities":{
       "type": "hasMany",
-      "model": "emission",
+      "model": "facility",
       "foreignKey": "uid"
     }
   },

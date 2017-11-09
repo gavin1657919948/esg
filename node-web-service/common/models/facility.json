@@ -1,5 +1,5 @@
 {
-    "name": "emission",
+    "name": "facility",
     "base": "PersistedModel",
     "idInjection": true,
     "properties": {
@@ -43,11 +43,6 @@
     },
     "validations": [],
     "relations": {
-      "user": {
-        "type": "belongsTo",
-        "model": "user",
-        "foreignKey": "uid"
-      }
     },
     "acls": [],
     "methods": []
